@@ -22,7 +22,9 @@ public class Vista_ahorcado extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(contentPane);
-
+        
+        Menu mnu = new Menu();
+        contentPane.add(mnu);
         setVisible(true);
         //180 menu
         //180 palabra secreta
