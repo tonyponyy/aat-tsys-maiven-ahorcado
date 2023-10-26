@@ -22,6 +22,10 @@ public class Vista_ahorcado extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(contentPane);
+        contentPane.setLayout(null);
+        
+        Teclado tcl = new Teclado();
+        contentPane.add(tcl);
 
         setVisible(true);
         //180 menu
