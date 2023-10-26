@@ -13,7 +13,6 @@ public class Vista_ahorcado extends JFrame {
 	private final int FRAME_HEIGHT = 600;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
 	private Imagen imagenPanel = new Imagen();
 	
 
@@ -24,7 +23,6 @@ public class Vista_ahorcado extends JFrame {
 	public Vista_ahorcado() {
 		setTitle("Ahorcado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-        contentPane.add(imagenPanel);
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -33,9 +31,10 @@ public class Vista_ahorcado extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+        contentPane.add(imagenPanel);
 		setVisible(true);
 
-		// Creación del ListBox
+		// Creaciï¿½n del ListBox
 		DefaultListModel<String> listModel = new DefaultListModel<>();
 		listModel.addElement("Murcielago");
 		listModel.addElement("Elefante");
@@ -44,9 +43,9 @@ public class Vista_ahorcado extends JFrame {
 		listModel.addElement("Guitarra");
 		listModel.addElement("Mariposa");
 		listModel.addElement("Tractor");
-		listModel.addElement("Helicóptero");
+		listModel.addElement("Helicï¿½ptero");
 		listModel.addElement("Cocodrilo");
-		listModel.addElement("Esquí");
+		listModel.addElement("Esquï¿½");
 
 		JList<String> list = new JList<>(listModel);
 		list.setBounds(371, 54, 1, 1);
