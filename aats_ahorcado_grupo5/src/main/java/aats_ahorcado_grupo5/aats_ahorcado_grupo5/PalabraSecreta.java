@@ -1,5 +1,7 @@
 package aats_ahorcado_grupo5.aats_ahorcado_grupo5;
 
-public class PalabraSecreta {
+import javax.swing.JPanel;
+
+public class PalabraSecreta extends JPanel{
 
 }
