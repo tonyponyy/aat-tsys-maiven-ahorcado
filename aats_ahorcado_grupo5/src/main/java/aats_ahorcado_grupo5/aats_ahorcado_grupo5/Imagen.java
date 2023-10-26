@@ -28,11 +28,12 @@ public class Imagen extends JPanel {
     protected void QuitarVida() {
     	if (estado < 10) {
     		estado++;
+    		Paint();
     	}
     }
     
     protected void Revivir() {
-    	estado = 0;
+    	estado = 1;
     	Paint();
     }
     

@@ -2,6 +2,8 @@ package aats_ahorcado_grupo5.aats_ahorcado_grupo5;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -9,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class Vista_ahorcado extends JFrame {
 
@@ -16,7 +19,7 @@ public class Vista_ahorcado extends JFrame {
     private final int FRAME_HEIGHT = 600;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private Imagen imagenPanel = new Imagen();
 	
 	public Vista_ahorcado() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,8 +35,9 @@ public class Vista_ahorcado extends JFrame {
         //180 menu
         //180 palabra secreta
         //360 teclado
-        Imagen imagenPanel = new Imagen();
+       
         contentPane.add(imagenPanel);
 	}
+	
 
 }
