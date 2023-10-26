@@ -32,7 +32,6 @@ public class Teclado extends JPanel{
 			alfabeto[i] = new JButton(String.valueOf((char)(65+i)));
 			alfabeto[i].setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 			
-			alfabeto[i].setLocation(100,100);
 			add(alfabeto[i]);
 		}
 		setListeners();
@@ -50,6 +49,7 @@ public class Teclado extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(((JButton)e.getSource()).getText());
+				((JButton)e.getSource()).setEnabled(false);
 			}
 		};
 		
