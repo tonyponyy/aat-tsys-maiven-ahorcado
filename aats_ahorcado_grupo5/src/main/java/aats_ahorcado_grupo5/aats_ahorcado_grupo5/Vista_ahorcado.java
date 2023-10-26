@@ -14,6 +14,7 @@ public class Vista_ahorcado extends JFrame {
 	private Imagen imagenPanel = new Imagen();
 	
 	public Vista_ahorcado() {
+		setTitle("Ahorcado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setLocationRelativeTo(null);
