@@ -8,6 +8,11 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+    	try {
+			vista_ahorcado frame = new vista_ahorcado();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 }
