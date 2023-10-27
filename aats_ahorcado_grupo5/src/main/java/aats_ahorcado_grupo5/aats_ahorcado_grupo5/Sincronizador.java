@@ -43,4 +43,8 @@ public class Sincronizador {
 		return va;
 	}
 	
+	public Menu getMenu() {
+		return mnu;
+	}
+	
 }
