@@ -7,6 +7,7 @@ import java.awt.Font;
 
 import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -66,10 +67,12 @@ public class PalabraSecreta extends JPanel {
 	}
 
 	private void crearVidas() {
+		String ruta_imagen = "img/bombilla.png";
 		for (int i = 0; i < this.vidas; i++) {
 			JButton btnNewButton = new JButton("");
 			btnNewButton.setEnabled(false);
 			btnNewButton.setBackground(new Color(255, 0, 0));
+			btnNewButton.setIcon(new ImageIcon(ruta_imagen));
 			btnNewButton.setBounds(this.posicionXVidas, 69, 50, 50);
 			add(btnNewButton);
 
