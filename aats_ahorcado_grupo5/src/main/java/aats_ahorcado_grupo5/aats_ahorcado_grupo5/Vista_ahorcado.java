@@ -104,6 +104,8 @@ public class Vista_ahorcado extends JFrame {
 	
 	public void finJuego(boolean ganador) {
 		sincro.getTeclado().desactivar();
+		sincro.getMenu().disablePistaButton();
+		sincro.getMenu().disableResolverButton();
 		if (ganador) {
 			JOptionPane.showMessageDialog(null, "Has ganado la partida");
 		}else {
