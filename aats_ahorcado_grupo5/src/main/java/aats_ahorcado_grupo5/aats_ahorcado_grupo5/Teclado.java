@@ -1,29 +1,33 @@
 package aats_ahorcado_grupo5.aats_ahorcado_grupo5;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Teclado extends JPanel{
 	
-	private final int PANEL_WIDTH = 400;
-	private final int PANEL_HEIGHT = 240;
+	private final int PANEL_WIDTH = 390;
+	private final int PANEL_HEIGHT = 190;
 	private final int BUTTON_WIDTH = 50;
 	private final int BUTTON_HEIGHT = 25;
 	
 	private JButton[] alfabeto = new JButton[26];
 	private JLabel palabraSecretaLabel;
 	private boolean tecladoActivado = true;
+	private Sincronizador sincro;
 	
 	public Teclado() {
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		setSize(PANEL_WIDTH, PANEL_HEIGHT);
-		setLocation(10, 360);
+		setLocation(05, 370);
+		setBorder(BorderFactory.createLineBorder(Color.black));
 
 		
 		for(int i = 0; i < alfabeto.length; i++) {
@@ -39,8 +43,8 @@ public class Teclado extends JPanel{
 	
 	
 	//Función para asignar a quien devolvera la tecla pulsada
-	public void setTargetLabel(JLabel palabraSecretaLabel) {
-		this.palabraSecretaLabel = palabraSecretaLabel;
+	public void setSincro(Sincronizador sincro) {
+		this.sincro = sincro;
 	}
 	
 	//Funcion que crea el action listener y se lo asigna a todos los botones
@@ -48,8 +52,8 @@ public class Teclado extends JPanel{
 		ActionListener al = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(((JButton)e.getSource()).getText());
 				((JButton)e.getSource()).setEnabled(false);
+				sincro.getPalabraSecreta().comprobarLetra(((JButton)e.getSource()).getText());
 			}
 		};
 		
@@ -67,10 +71,17 @@ public class Teclado extends JPanel{
 		}
 	}
 	
-	public void switchTeclado() {
-		tecladoActivado = !tecladoActivado;
+	//Función que activa todas las letras del teclado
+	public void activar() {
 		for(int i = 0; i < alfabeto.length; i++) {
-			alfabeto[i].setEnabled(tecladoActivado);
+			alfabeto[i].setEnabled(true);
+		}
+	}
+	
+	//Función que desactiva todas las letras del teclado
+	public void desactivar() {
+		for(int i = 0; i < alfabeto.length; i++) {
+			alfabeto[i].setEnabled(true);
 		}
 	}
 }
