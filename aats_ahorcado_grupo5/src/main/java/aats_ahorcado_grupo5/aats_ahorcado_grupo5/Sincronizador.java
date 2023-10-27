@@ -18,6 +18,7 @@ public class Sincronizador {
 		this.va = va;
 		
 		this.img.setSincro(this);
+		this.tcl.setSincro(this);
 	}
 
 

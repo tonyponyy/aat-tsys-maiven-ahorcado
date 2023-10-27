@@ -57,7 +57,7 @@ public class Vista_ahorcado extends JFrame {
 
 		palabraRandom(listModel.size(), list);
 
-		PalabraSecreta palabraSecreta = new PalabraSecreta(list.getSelectedValue());
+		PalabraSecreta palabraSecreta = new PalabraSecreta(list.getSelectedValue(), 5);
 		palabraSecreta.setSize(380, 180);
 		palabraSecreta.setLocation(10, 180);
 		contentPane.add(palabraSecreta);
@@ -81,10 +81,10 @@ public class Vista_ahorcado extends JFrame {
 	}
 	
 	private void iniciarPartida() {
-		sincro.getTeclado().activarTeclado();
+		sincro.getTeclado().activar();
 		sincro.getImagen().Revivir();
 		palabraRandom(listModel.size(), list);
-		sincro.getPalabraSecreta().Revivir();
+		//sincro.getPalabraSecreta().Revivir();
 	}
 	
 	private void finJuego(boolean ganador) {
