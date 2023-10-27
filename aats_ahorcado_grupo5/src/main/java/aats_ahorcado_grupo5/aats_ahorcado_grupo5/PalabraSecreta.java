@@ -10,26 +10,32 @@ import javax.swing.SwingConstants;
 
 public class PalabraSecreta extends JPanel {
 	
-	private JPanel panel;
+	private JLabel lblNewLabel;
 	
 	public PalabraSecreta(String barras) {
 		
 		setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		setLayout(null);
 
-		panel = new JPanel();
+		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
 		panel.setBounds(50, 130, 350, 40);
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(barras);
+		lblNewLabel = new JLabel(barras);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblNewLabel.setBounds(0, 0, 350, 40);
 		panel.add(lblNewLabel);
 		
+	}
+	
+	
+	
+	public void modificarLabel(String palabra) {
+		lblNewLabel.setText(palabra);
 	}
 
 }

@@ -14,7 +14,7 @@ public class Vista_ahorcado extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String palabraAleatoria;
-	private String barras = "";
+	private String palabraOculta = "";
 
 	public Vista_ahorcado() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,11 +50,16 @@ public class Vista_ahorcado extends JFrame {
 
 		palabraRandom(listModel.size(), list);
 
-		PalabraSecreta palabraSecreta = new PalabraSecreta(barras);
+		PalabraSecreta palabraSecreta = new PalabraSecreta(palabraOculta);
 		palabraSecreta.setSize(450, 180);
 		palabraSecreta.setLocation(10, 180);
 		contentPane.add(palabraSecreta);
-
+		
+		comprobarLetra("a", palabraSecreta);
+		comprobarLetra("e", palabraSecreta);
+		comprobarLetra("i", palabraSecreta);
+		comprobarLetra("o", palabraSecreta);
+		comprobarLetra("u", palabraSecreta);
 
 	}
 
@@ -64,7 +69,7 @@ public class Vista_ahorcado extends JFrame {
 		palabraAleatoria = list.getSelectedValue();
 
 		for (int i = 0; i < palabraAleatoria.length(); i++) {
-			barras += " _ ";
+			palabraOculta += " _ ";
 		}
 	}
 
@@ -72,26 +77,35 @@ public class Vista_ahorcado extends JFrame {
 		String palabra = palabraAleatoria;
 		int pos = palabra.indexOf(letra);
 		boolean condition = true;
-
-		while (!condition) {
-
+		
+		do {
 			pos = palabra.indexOf(letra);
 			if (pos == -1) {
 				condition = !condition;
 			} else {
-				modificarString(pos, letra, palabra);
+				palabra = modificarString(pos, letra, palabra, palabraSecreta);
 			}
-		}
+		} while (condition);
+		
 
 	}
 
-	private String modificarString(int pos, String letra, String palabra) {
+	private String modificarString(int pos, String letra, String palabra, PalabraSecreta palabraSecreta) {
+		char letraEncontrada = '_';
 		char[] caracteres = palabra.toCharArray();
-
-		caracteres[pos] = letra.toCharArray()[0];
+		
+		caracteres[pos] = letraEncontrada;
+		
+		// Reemplaza el carácter en la posición 'pos' de 'palabraOculta' con 'letra'. 
+		// eliminando los espacios en blanco en la cadena.
+		String palabraOcultaModificadas = palabraOculta.replaceAll(" ", "").substring(0, pos) + letra + palabraOculta.replaceAll(" ", "").substring(pos + 1);
 
 		palabra = new String(caracteres);
-
+		
+		palabraOculta = palabraOcultaModificadas.replaceAll("", " ");
+		
+		palabraSecreta.modificarLabel(palabraOculta);
+		
 		return palabra;
 	}
 
