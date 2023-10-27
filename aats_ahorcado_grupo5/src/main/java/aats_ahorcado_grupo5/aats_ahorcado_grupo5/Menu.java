@@ -17,7 +17,7 @@ public class Menu extends JPanel{
 	private JButton iniciarPartidaBtn;
 	private JButton resolverBtn;
 	private JButton pistaBtn;
-	private Sincronizador sincro;
+	private static Sincronizador sincro;
 	private ActionListener iniciarPartidaListener;
 	private ActionListener resolverListener;
 	private ActionListener pistaListener;
@@ -56,7 +56,8 @@ public class Menu extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				sincro.getVistaAhorcado().iniciarPartida();
+				seleccionarDificultad();
+				
 			}
 			
 		};
@@ -91,7 +92,31 @@ public class Menu extends JPanel{
 		pistaBtn.addActionListener(pistaListener);
 	}
 	
+
 	public void enablePistaButton() {
 		this.pistaBtn.setEnabled(true);
 	}
+	
+
+	public static void seleccionarDificultad() {
+
+        String[] opciones = {"facil", "Intermedio", "Muy Avanzado"};
+        int numSelect = JOptionPane.showOptionDialog(null, "Elige nivel de dificultad",
+                "Iniciar partida", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null, opciones, opciones[0]);
+
+        if (numSelect == 0) {
+        	sincro.getVistaAhorcado().definirDificultad(10);
+        	sincro.getVistaAhorcado().iniciarPartida();
+        } else if (numSelect == 1) {
+        	sincro.getVistaAhorcado().definirDificultad(8);
+        	sincro.getVistaAhorcado().iniciarPartida();
+        } else if (numSelect == 2) {
+        	sincro.getVistaAhorcado().definirDificultad(6);
+        	sincro.getVistaAhorcado().iniciarPartida();
+        }
+    }
+	
+
+
 }
