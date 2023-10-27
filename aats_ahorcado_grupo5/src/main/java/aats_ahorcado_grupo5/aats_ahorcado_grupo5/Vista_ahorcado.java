@@ -25,6 +25,8 @@ public class Vista_ahorcado extends JFrame {
 
 
 	public Vista_ahorcado() {
+		
+		
 		setTitle("Ahorcado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
