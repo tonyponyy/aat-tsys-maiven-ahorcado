@@ -6,13 +6,15 @@ public class Sincronizador {
 	private PalabraSecreta ps;
 	private Imagen img;
 	private Vista_ahorcado va;
+	private Menu mnu;
 	
 	
-	public Sincronizador(Teclado tcl, PalabraSecreta ps, Imagen img, Vista_ahorcado va) {
+	public Sincronizador(Teclado tcl, PalabraSecreta ps, Imagen img, Menu mnu, Vista_ahorcado va) {
 		super();
 		this.tcl = tcl;
 		this.ps = ps;
 		this.img = img;
+		this.mnu = mnu;
 		this.va = va;
 	}
 
