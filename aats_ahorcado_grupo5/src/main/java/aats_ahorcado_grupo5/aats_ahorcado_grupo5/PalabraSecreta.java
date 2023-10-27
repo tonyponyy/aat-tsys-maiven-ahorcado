@@ -20,7 +20,7 @@ public class PalabraSecreta extends JPanel {
 	private int vidas;
 	private int intentos;
 	private int posicionXVidas = 15;
-	
+
 	private final int INTENTOSDEFECTO = 10;
 
 	public PalabraSecreta(String palabraSecreta, int vidas) {
@@ -55,7 +55,7 @@ public class PalabraSecreta extends JPanel {
 	public void setSincro(Sincronizador sincro) {
 		this.sincro = sincro;
 	}
-	
+
 	public void setVidas(int vidas) {
 		this.vidas = vidas;
 		this.crearVidas();
@@ -80,6 +80,7 @@ public class PalabraSecreta extends JPanel {
 	}
 
 	private void ocultarPalabra() {
+		this.palabraOculta = "";
 		for (int i = 0; i < palabraAleatoria.length(); i++) {
 			this.palabraOculta += " _";
 		}
@@ -94,12 +95,16 @@ public class PalabraSecreta extends JPanel {
 		int comprobacion = palabra.indexOf(letra);
 
 		if (comprobacion == -1) {
+			
 			this.intentos -= 1;
+			
 		} else {
 			buscarPosicion(letra, palabra);
 		}
 		
-		if (this.intentos ==0) {
+		comprobarPalabras();
+
+		if (this.intentos == 0) {
 			sincro.getVistaAhorcado();
 		}
 	}
@@ -137,5 +142,19 @@ public class PalabraSecreta extends JPanel {
 		modificarLabel(palabraOculta);
 
 		return palabra;
+	}
+	
+	private void comprobarPalabras() {
+		if(this.palabraAleatoria.equals(this.palabraOculta)) {
+			sincro.getVistaAhorcado();
+		}
+	}
+	
+	public void mostrarLetra() {
+
+		int pos = this.palabraOculta.replaceAll(" ", "").indexOf('_');
+		String letra = String.valueOf(this.palabraAleatoria.charAt(pos));
+		
+		comprobarLetra(letra);
 	}
 }
