@@ -19,7 +19,7 @@ public class PalabraSecreta extends JPanel {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
-		panel.setBounds(50, 130, 350, 40);
+		panel.setBounds(15, 130, 350, 40);
 		add(panel);
 		panel.setLayout(null);
 		

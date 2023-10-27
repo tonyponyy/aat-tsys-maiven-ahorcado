@@ -13,10 +13,7 @@ public class Vista_ahorcado extends JFrame {
 	private final int FRAME_HEIGHT = 600;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
 	private Imagen imagenPanel = new Imagen();
-	
-
 	private String palabraAleatoria;
 	private String palabraOculta = "";
 
@@ -24,18 +21,17 @@ public class Vista_ahorcado extends JFrame {
 	public Vista_ahorcado() {
 		setTitle("Ahorcado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-        contentPane.add(imagenPanel);
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		contentPane.add(imagenPanel);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		setVisible(true);
 
-		// Creación del ListBox
+		// Creacion del ListBox
 		DefaultListModel<String> listModel = new DefaultListModel<>();
 		listModel.addElement("Murcielago");
 		listModel.addElement("Elefante");
@@ -44,18 +40,18 @@ public class Vista_ahorcado extends JFrame {
 		listModel.addElement("Guitarra");
 		listModel.addElement("Mariposa");
 		listModel.addElement("Tractor");
-		listModel.addElement("Helicóptero");
+		listModel.addElement("Helicoptero");
 		listModel.addElement("Cocodrilo");
-		listModel.addElement("Esquí");
+		listModel.addElement("Esqui");
 
 		JList<String> list = new JList<>(listModel);
 		list.setBounds(371, 54, 1, 1);
-		add(list);
+		getContentPane().add(list);
 
 		palabraRandom(listModel.size(), list);
 
 		PalabraSecreta palabraSecreta = new PalabraSecreta(palabraOculta);
-		palabraSecreta.setSize(450, 180);
+		palabraSecreta.setSize(380, 180);
 		palabraSecreta.setLocation(10, 180);
 		contentPane.add(palabraSecreta);
 		
@@ -100,7 +96,7 @@ public class Vista_ahorcado extends JFrame {
 		
 		caracteres[pos] = letraEncontrada;
 		
-		// Reemplaza el carácter en la posición 'pos' de 'palabraOculta' con 'letra'. 
+		// Reemplaza el caracter en la posicion 'pos' de 'palabraOculta' con 'letra'. 
 		// eliminando los espacios en blanco en la cadena.
 		String palabraOcultaModificadas = palabraOculta.replaceAll(" ", "").substring(0, pos) + letra + palabraOculta.replaceAll(" ", "").substring(pos + 1);
 
