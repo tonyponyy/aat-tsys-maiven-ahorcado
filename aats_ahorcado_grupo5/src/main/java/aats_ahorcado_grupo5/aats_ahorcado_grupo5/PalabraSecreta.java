@@ -61,6 +61,10 @@ public class PalabraSecreta extends JPanel {
 		this.crearVidas();
 	}
 
+	public void setIntentos(int intentos) {
+		this.intentos = intentos;
+	}
+
 	private void crearVidas() {
 		for (int i = 0; i < this.vidas; i++) {
 			JButton btnNewButton = new JButton("");
