@@ -19,7 +19,8 @@ public class Vista_ahorcado extends JFrame {
 
 	private String palabraAleatoria;
 	private String barras = "";
-
+	private DefaultListModel<String> listModel = new DefaultListModel<>();
+	private JList<String> list = new JList<>(listModel);
 
 	public Vista_ahorcado() {
 		setTitle("Ahorcado");
@@ -36,7 +37,7 @@ public class Vista_ahorcado extends JFrame {
         contentPane.add(imagenPanel);
 
 		// Creaci�n del ListBox
-		DefaultListModel<String> listModel = new DefaultListModel<>();
+		
 		listModel.addElement("Murcielago");
 		listModel.addElement("Elefante");
 		listModel.addElement("Computadora");
@@ -48,7 +49,7 @@ public class Vista_ahorcado extends JFrame {
 		listModel.addElement("Cocodrilo");
 		listModel.addElement("Esqu�");
 
-		JList<String> list = new JList<>(listModel);
+		
 		list.setBounds(371, 54, 1, 1);
 		add(list);
 
@@ -102,6 +103,13 @@ public class Vista_ahorcado extends JFrame {
 		palabra = new String(caracteres);
 
 		return palabra;
+	}
+	
+	private void iniciarPartida() {
+		sincro.getTcl().activarTeclado();
+		sincro.getImg().Revivir();
+		palabraRandom(listModel.size(), list);
+		sincro.getPs().Revivir();
 	}
 	
 
