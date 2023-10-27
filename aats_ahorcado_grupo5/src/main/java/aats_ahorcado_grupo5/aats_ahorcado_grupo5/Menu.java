@@ -79,7 +79,7 @@ public class Menu extends JPanel{
 				  int input = JOptionPane.showConfirmDialog(null, "Perderas una vida si aceptas la pista. ¿Aceptas?", "Confirmacion pista",
 						  												JOptionPane.YES_NO_OPTION);
 				  if(input == 0) {
-					  //sincro.getPalabraSecreta().mostrarLetra();
+					  sincro.getPalabraSecreta().mostrarLetra();
 					  ((JButton)e.getSource()).setEnabled(false);
 				  }
 			}
