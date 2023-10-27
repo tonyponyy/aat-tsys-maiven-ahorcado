@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 public class PalabraSecreta extends JPanel {
 
 	private JLabel lblNewLabel;
+	private JPanel panel_1;
 	private Sincronizador sincro;
 	private String palabraOculta = "";
 	private String palabraAleatoria;
@@ -48,6 +49,11 @@ public class PalabraSecreta extends JPanel {
 		lblNewLabel.setBounds(0, 0, 350, 40);
 		panel.add(lblNewLabel);
 		
+		panel_1 = new JPanel();
+		panel_1.setBounds(15, 11, 350, 40);
+		add(panel_1);
+		panel_1.setLayout(null);
+		
 		crearVidas();
 		
 	}
@@ -66,11 +72,12 @@ public class PalabraSecreta extends JPanel {
 	}
 
 	private void crearVidas() {
-		for (int i = 0; i < this.vidas; i++) {
-			JButton btnNewButton = new JButton("");
+		for (int i = 1; i <= this.vidas; i++) {
+
+			JButton btnNewButton = new JButton();
 			btnNewButton.setEnabled(false);
 			btnNewButton.setBackground(new Color(255, 0, 0));
-			btnNewButton.setBounds(this.posicionXVidas, 69, 50, 50);
+			btnNewButton.setBounds(this.posicionXVidas, 80, 40, 40);
 			add(btnNewButton);
 
 			this.posicionXVidas += 60;
@@ -172,6 +179,7 @@ public class PalabraSecreta extends JPanel {
 		int pos = this.palabraOculta.replaceAll(" ", "").indexOf("_");
 		String letra = String.valueOf(this.palabraAleatoria.charAt(pos));
 		modificarString(pos, letra, this.palabraOculta);
+		compararPalabras();
 	}
 
 	public void resolver() {
@@ -179,8 +187,10 @@ public class PalabraSecreta extends JPanel {
 		sincro.getVistaAhorcado().finJuego(false);
 	}
 
-	public int getVidas() {
-		return vidas;
+	private void eliminarVida() {
+		panel_1.remove(panel_1.getComponentCount());
 	}
+	
+	
 	
 }
