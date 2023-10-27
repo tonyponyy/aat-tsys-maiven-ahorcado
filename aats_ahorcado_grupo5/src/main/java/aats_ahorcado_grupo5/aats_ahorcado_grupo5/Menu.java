@@ -10,6 +10,7 @@ public class Menu extends JPanel{
 	private final int PANEL_HEIGHT = 180;
 	private final int BUTTON_WIDTH = 50;
 	private final int BUTTON_HEIGHT = 25;
+	private Sincronizador sincro;
 	
 	public Menu() {
 		setLayout(null);
@@ -17,5 +18,9 @@ public class Menu extends JPanel{
 		setLocation(10, 360);
 		setBackground(Color.black);
 		
+	}
+	
+	public void setSincro(Sincronizador sincro) {
+		this.sincro = sincro;
 	}
 }
