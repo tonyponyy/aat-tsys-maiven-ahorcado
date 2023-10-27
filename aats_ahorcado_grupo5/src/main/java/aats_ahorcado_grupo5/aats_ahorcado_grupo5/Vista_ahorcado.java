@@ -17,14 +17,13 @@ public class Vista_ahorcado extends JFrame {
 	private Sincronizador sincro;
 	private Teclado tcl;
 
-<<<<<<< HEAD
+
 	private String palabraAleatoria;
 	private String barras = "";
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 	private JList<String> list = new JList<>(listModel);
 
-=======
->>>>>>> dbaf7cc33dc341015636997e2889d8f36de102dc
+
 	public Vista_ahorcado() {
 		setTitle("Ahorcado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
@@ -39,23 +38,7 @@ public class Vista_ahorcado extends JFrame {
 
         contentPane.add(imagenPanel);
 
-<<<<<<< HEAD
-		// Creaci�n del ListBox
-		
-		listModel.addElement("Murcielago");
-		listModel.addElement("Elefante");
-		listModel.addElement("Computadora");
-		listModel.addElement("Jirafa");
-		listModel.addElement("Guitarra");
-		listModel.addElement("Mariposa");
-		listModel.addElement("Tractor");
-		listModel.addElement("Helic�ptero");
-		listModel.addElement("Cocodrilo");
-		listModel.addElement("Esqu�");
-=======
-		// Creacion del ListBox
 
-		DefaultListModel<String> listModel = new DefaultListModel<>();
 		listModel.addElement("MURCIELAGO");
 		listModel.addElement("ELEFANTE");
 		listModel.addElement("COMPUTADORA");
@@ -66,7 +49,6 @@ public class Vista_ahorcado extends JFrame {
 		listModel.addElement("HELICOPTERO");
 		listModel.addElement("COCODRILO");
 		listModel.addElement("ESQUI");
->>>>>>> dbaf7cc33dc341015636997e2889d8f36de102dc
 
 		
 		list.setBounds(371, 54, 1, 1);
@@ -97,10 +79,10 @@ public class Vista_ahorcado extends JFrame {
 	}
 	
 	private void iniciarPartida() {
-		sincro.getTcl().activarTeclado();
-		sincro.getImg().Revivir();
+		sincro.getTeclado().activarTeclado();
+		sincro.getImagen().Revivir();
 		palabraRandom(listModel.size(), list);
-		sincro.getPs().Revivir();
+		sincro.getPalabraSecreta().Revivir();
 	}
 	
 
