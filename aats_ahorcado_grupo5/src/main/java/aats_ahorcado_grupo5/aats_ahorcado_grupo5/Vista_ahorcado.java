@@ -71,7 +71,7 @@ public class Vista_ahorcado extends JFrame {
 		
 		setVisible(true);
 
-		iniciarPartida();
+		sincro.getMenu().seleccionarDificultad();
 	}
 
 	private void palabraRandom(int num, JList<String> list) {
