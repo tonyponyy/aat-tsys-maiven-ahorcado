@@ -80,6 +80,7 @@ public class PalabraSecreta extends JPanel {
 	}
 
 	private void ocultarPalabra() {
+		this.palabraOculta = "";
 		for (int i = 0; i < palabraAleatoria.length(); i++) {
 			this.palabraOculta += " _";
 		}
@@ -97,7 +98,7 @@ public class PalabraSecreta extends JPanel {
 			sincro.getImagen().QuitarVida();
 			restarVida();
 			this.intentos -= 1;
-			
+
 		} else {
 			buscarPosicion(letra, palabra);
 		}
