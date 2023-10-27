@@ -17,6 +17,13 @@ public class Vista_ahorcado extends JFrame {
 	private Sincronizador sincro;
 	private Teclado tcl;
 
+
+	private String palabraAleatoria;
+	private String barras = "";
+	private DefaultListModel<String> listModel = new DefaultListModel<>();
+	private JList<String> list = new JList<>(listModel);
+
+
 	public Vista_ahorcado() {
 		setTitle("Ahorcado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
@@ -31,9 +38,7 @@ public class Vista_ahorcado extends JFrame {
 
         contentPane.add(imagenPanel);
 
-		// Creacion del ListBox
 
-		DefaultListModel<String> listModel = new DefaultListModel<>();
 		listModel.addElement("MURCIELAGO");
 		listModel.addElement("ELEFANTE");
 		listModel.addElement("COMPUTADORA");
@@ -45,7 +50,7 @@ public class Vista_ahorcado extends JFrame {
 		listModel.addElement("COCODRILO");
 		listModel.addElement("ESQUI");
 
-		JList<String> list = new JList<>(listModel);
+		
 		list.setBounds(371, 54, 1, 1);
 		getContentPane().add(list);
 
@@ -59,8 +64,11 @@ public class Vista_ahorcado extends JFrame {
 		tcl = new Teclado();
 		contentPane.add(tcl);
 		
-		sincro = new Sincronizador(tcl, palabraSecreta, imagenPanel, null, this);
-
+		Menu mnu = new Menu();
+		contentPane.add(mnu);
+		
+		sincro = new Sincronizador(tcl, palabraSecreta, imagenPanel, mnu, this);
+		
 		setVisible(true);
 
 	}
@@ -68,6 +76,13 @@ public class Vista_ahorcado extends JFrame {
 	private void palabraRandom(int num, JList<String> list) {
 		int numRandom = new Random().nextInt(num);
 		list.setSelectedIndex(numRandom);
+	}
+	
+	private void iniciarPartida() {
+		sincro.getTeclado().activar();
+		sincro.getImagen().Revivir();
+		palabraRandom(listModel.size(), list);
+		//sincro.getPalabraSecreta().Revivir();
 	}
 	
 
