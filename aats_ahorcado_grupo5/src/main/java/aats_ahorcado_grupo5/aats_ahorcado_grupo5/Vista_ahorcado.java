@@ -56,7 +56,7 @@ public class Vista_ahorcado extends JFrame {
 
 		palabraRandom(listModel.size(), list);
 
-		PalabraSecreta palabraSecreta = new PalabraSecreta(list.getSelectedValue());
+		PalabraSecreta palabraSecreta = new PalabraSecreta(list.getSelectedValue(), 5);
 		palabraSecreta.setSize(380, 180);
 		palabraSecreta.setLocation(10, 180);
 		contentPane.add(palabraSecreta);
