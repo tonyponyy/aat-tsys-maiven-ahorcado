@@ -54,7 +54,7 @@ public class Menu extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				sincro.getVa();
+				sincro.getVistaAhorcado().iniciarPartida();
 			}
 			
 		};
@@ -64,7 +64,7 @@ public class Menu extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				sincro.getVa();
+				//sincro.getPalabraSecreta().resolver();
 			}
 			
 		};
@@ -74,7 +74,7 @@ public class Menu extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				sincro.getVa();
+				//sincro.getPalabraSecreta().pista();
 			}
 			
 		};

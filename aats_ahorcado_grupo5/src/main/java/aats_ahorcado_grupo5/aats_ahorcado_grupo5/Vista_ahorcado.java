@@ -17,8 +17,11 @@ public class Vista_ahorcado extends JFrame {
 	private Sincronizador sincro;
 	private Teclado tcl;
 
+
 	private String palabraAleatoria;
 	private String barras = "";
+	private DefaultListModel<String> listModel = new DefaultListModel<>();
+	private JList<String> list = new JList<>(listModel);
 
 
 	public Vista_ahorcado() {
@@ -30,82 +33,56 @@ public class Vista_ahorcado extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
         contentPane.add(imagenPanel);
 
-		// Creaci�n del ListBox
-		DefaultListModel<String> listModel = new DefaultListModel<>();
-		listModel.addElement("Murcielago");
-		listModel.addElement("Elefante");
-		listModel.addElement("Computadora");
-		listModel.addElement("Jirafa");
-		listModel.addElement("Guitarra");
-		listModel.addElement("Mariposa");
-		listModel.addElement("Tractor");
-		listModel.addElement("Helic�ptero");
-		listModel.addElement("Cocodrilo");
-		listModel.addElement("Esqu�");
 
-		JList<String> list = new JList<>(listModel);
+		listModel.addElement("MURCIELAGO");
+		listModel.addElement("ELEFANTE");
+		listModel.addElement("COMPUTADORA");
+		listModel.addElement("JIRAFA");
+		listModel.addElement("GUITARRA");
+		listModel.addElement("MARIPOSA");
+		listModel.addElement("TRACTOR");
+		listModel.addElement("HELICOPTERO");
+		listModel.addElement("COCODRILO");
+		listModel.addElement("ESQUI");
+
+		
 		list.setBounds(371, 54, 1, 1);
-		add(list);
+		getContentPane().add(list);
 
 		palabraRandom(listModel.size(), list);
-		
-		PalabraSecreta palabraSecreta = new PalabraSecreta(barras);
-		palabraSecreta.setSize(450, 180);
+
+		PalabraSecreta palabraSecreta = new PalabraSecreta(list.getSelectedValue());
+		palabraSecreta.setSize(380, 180);
 		palabraSecreta.setLocation(10, 180);
 		contentPane.add(palabraSecreta);
 		
 		tcl = new Teclado();
 		contentPane.add(tcl);
-		
-		sincro = new Sincronizador(tcl, palabraSecreta, imagenPanel, null, this);
-		
+
 		Menu mnu = new Menu();
 		contentPane.add(mnu);
 		
+		sincro = new Sincronizador(tcl, palabraSecreta, imagenPanel, mnu, this);
+		
 		setVisible(true);
+
 	}
 
 	private void palabraRandom(int num, JList<String> list) {
 		int numRandom = new Random().nextInt(num);
 		list.setSelectedIndex(numRandom);
-		palabraAleatoria = list.getSelectedValue();
-
-		for (int i = 0; i < palabraAleatoria.length(); i++) {
-			barras += " _ ";
-		}
 	}
-
-	private void comprobarLetra(String letra, PalabraSecreta palabraSecreta) {
-		String palabra = palabraAleatoria;
-		int pos = palabra.indexOf(letra);
-		boolean condition = true;
-
-		while (!condition) {
-
-			pos = palabra.indexOf(letra);
-			if (pos == -1) {
-				condition = !condition;
-			} else {
-				modificarString(pos, letra, palabra);
-			}
-		}
-
-	}
-
-	private String modificarString(int pos, String letra, String palabra) {
-		char[] caracteres = palabra.toCharArray();
-
-		caracteres[pos] = letra.toCharArray()[0];
-
-		palabra = new String(caracteres);
-
-		return palabra;
+	
+	public void iniciarPartida() {
+		sincro.getTeclado().activar();
+		sincro.getImagen().Revivir();
+		palabraRandom(listModel.size(), list);
+		//sincro.getPalabraSecreta().Revivir();
 	}
 	
 
