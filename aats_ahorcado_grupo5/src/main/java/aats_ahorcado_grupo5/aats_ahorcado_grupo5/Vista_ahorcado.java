@@ -3,6 +3,7 @@ package aats_ahorcado_grupo5.aats_ahorcado_grupo5;
 import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.DefaultListModel;
@@ -20,6 +21,7 @@ public class Vista_ahorcado extends JFrame {
 	
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 	private JList<String> list = new JList<>(listModel);
+	private int vida = 10;
 
 
 	public Vista_ahorcado() {
@@ -69,6 +71,7 @@ public class Vista_ahorcado extends JFrame {
 		
 		setVisible(true);
 
+
 	}
 
 	private void palabraRandom(int num, JList<String> list) {
@@ -82,11 +85,29 @@ public class Vista_ahorcado extends JFrame {
 		setPalabraAleatoria();
 		sincro.getPalabraSecreta().setPalabraAleatoria(this.palabraAleatoria);
 		//sincro.getPalabraSecreta().Revivir();
+		sincro.getImagen().DefinirVida((vida-10)+1);
+		sincro.getPalabraSecreta().setVidas(vida);
+
 	}
 
 	public void setPalabraAleatoria() {
 		palabraRandom(listModel.size(), list);
 		this.palabraAleatoria = list.getSelectedValue();
+	}
+	
+	
+	
+	public void definirDificultad(int n_vidas) {
+		vida = n_vidas;
+	}
+	
+	private void finJuego(boolean ganador) {
+		sincro.getTeclado().desactivar();
+		if (ganador) {
+			JOptionPane.showMessageDialog(null, "Has ganado la partida");
+		}else {
+			JOptionPane.showMessageDialog(null, "Has perdido, vuelve a intentarlo");
+		}
 	}
 	
 	
