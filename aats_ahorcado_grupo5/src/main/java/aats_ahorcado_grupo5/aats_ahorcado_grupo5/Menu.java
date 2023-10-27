@@ -17,10 +17,10 @@ public class Menu extends JPanel{
 	private JButton iniciarPartidaBtn;
 	private JButton resolverBtn;
 	private JButton pistaBtn;
-	private Sincronizador sincro;
-	ActionListener iniciarPartidaListener;
-	ActionListener resolverListener;
-	ActionListener pistaListener;
+	private static Sincronizador sincro;
+	private ActionListener iniciarPartidaListener;
+	private ActionListener resolverListener;
+	private ActionListener pistaListener;
 	
 	public Menu() {
 		setLayout(null);
@@ -49,6 +49,7 @@ public class Menu extends JPanel{
 		setListeners();
 	}
 	
+	//Crear y asignar los action listeners a los 3 botones
 	private void setListeners() {
 		iniciarPartidaListener = new ActionListener() {
 
@@ -56,7 +57,7 @@ public class Menu extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				seleccionarDificultad();
-				sincro.getVistaAhorcado().iniciarPartida();
+				
 			}
 			
 		};
@@ -76,30 +77,46 @@ public class Menu extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//sincro.getPalabraSecreta().pista();
+				  int input = JOptionPane.showConfirmDialog(null, "Perderas una vida si aceptas la pista. ¿Aceptas?", "Confirmacion pista",
+						  												JOptionPane.YES_NO_OPTION);
+				  if(input == 0) {
+					  sincro.getPalabraSecreta().mostrarLetra();
+					  ((JButton)e.getSource()).setEnabled(false);
+				  }
 			}
 			
 		};
-
+		
 		iniciarPartidaBtn.addActionListener(iniciarPartidaListener);
 		resolverBtn.addActionListener(resolverListener);
 		pistaBtn.addActionListener(pistaListener);
 	}
 	
+
+	public void enablePistaButton() {
+		this.pistaBtn.setEnabled(true);
+	}
+	
+
 	public static void seleccionarDificultad() {
 
-        String[] opciones = {"Fácil", "Intermedio", "Difícil"};
-        int num_select = JOptionPane.showOptionDialog(null, "Escoja el nivel de dificultad",
-                "Nivel de Dificultad", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+        String[] opciones = {"facil", "Intermedio", "Muy Avanzado"};
+        int numSelect = JOptionPane.showOptionDialog(null, "Elige nivel de dificultad",
+                "Iniciar partida", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
                 null, opciones, opciones[0]);
 
-        if (num_select == 0) {
-        	JOptionPane.showMessageDialog(null, "opcion 1");
-        } else if (num_select == 1) {
-        	JOptionPane.showMessageDialog(null, "opcion 2");
-        } else if (num_select == 2) {
-        	JOptionPane.showMessageDialog(null, "opcion 3");
+        if (numSelect == 0) {
+        	sincro.getVistaAhorcado().definirDificultad(10);
+        	sincro.getVistaAhorcado().iniciarPartida();
+        } else if (numSelect == 1) {
+        	sincro.getVistaAhorcado().definirDificultad(8);
+        	sincro.getVistaAhorcado().iniciarPartida();
+        } else if (numSelect == 2) {
+        	sincro.getVistaAhorcado().definirDificultad(6);
+        	sincro.getVistaAhorcado().iniciarPartida();
         }
     }
 	
+
+
 }
