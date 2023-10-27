@@ -107,7 +107,7 @@ public class PalabraSecreta extends JPanel {
 		comprobarPalabras();
 
 		if (this.intentos == 0) {
-			sincro.getVistaAhorcado();
+			sincro.getVistaAhorcado().finJuego(false);
 		}
 	}
 
@@ -147,8 +147,8 @@ public class PalabraSecreta extends JPanel {
 	}
 	
 	private void comprobarPalabras() {
-		if(this.palabraAleatoria.equals(this.palabraOculta)) {
-			sincro.getVistaAhorcado();
+		if(this.palabraAleatoria.equals(this.palabraOculta.replaceAll(" ", ""))) {
+			sincro.getVistaAhorcado().finJuego(true);
 		}
 	}
 	
