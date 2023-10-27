@@ -18,9 +18,9 @@ public class Menu extends JPanel{
 	private JButton resolverBtn;
 	private JButton pistaBtn;
 	private Sincronizador sincro;
-	ActionListener iniciarPartidaListener;
-	ActionListener resolverListener;
-	ActionListener pistaListener;
+	private ActionListener iniciarPartidaListener;
+	private ActionListener resolverListener;
+	private ActionListener pistaListener;
 	
 	public Menu() {
 		setLayout(null);
@@ -85,9 +85,13 @@ public class Menu extends JPanel{
 			}
 			
 		};
-
+		
 		iniciarPartidaBtn.addActionListener(iniciarPartidaListener);
 		resolverBtn.addActionListener(resolverListener);
 		pistaBtn.addActionListener(pistaListener);
+	}
+	
+	public void enablePistaButton() {
+		this.pistaBtn.setEnabled(true);
 	}
 }
