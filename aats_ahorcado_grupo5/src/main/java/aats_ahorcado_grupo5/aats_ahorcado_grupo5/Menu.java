@@ -80,6 +80,7 @@ public class Menu extends JPanel{
 						  												JOptionPane.YES_NO_OPTION);
 				  if(input == 0) {
 					  //sincro.getPalabraSecreta().mostrarLetra();
+					  ((JButton)e.getSource()).setEnabled(false);
 				  }
 			}
 			
