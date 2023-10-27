@@ -79,10 +79,10 @@ public class Vista_ahorcado extends JFrame {
 	}
 	
 	private void iniciarPartida() {
-		sincro.getTeclado().activarTeclado();
+		sincro.getTeclado().activar();
 		sincro.getImagen().Revivir();
 		palabraRandom(listModel.size(), list);
-		sincro.getPalabraSecreta().Revivir();
+		//sincro.getPalabraSecreta().Revivir();
 	}
 	
 
