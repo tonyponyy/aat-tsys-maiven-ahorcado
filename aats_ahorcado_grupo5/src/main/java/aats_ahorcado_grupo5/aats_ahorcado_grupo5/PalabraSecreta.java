@@ -90,7 +90,7 @@ public class PalabraSecreta extends JPanel {
 		int comprobacion = palabra.indexOf(letra);
 
 		if (comprobacion == -1) {
-
+			sincro.getImagen().QuitarVida();
 		} else {
 			buscarPosicion(letra, palabra);
 		}
