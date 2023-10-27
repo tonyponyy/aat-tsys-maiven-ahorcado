@@ -59,8 +59,11 @@ public class Vista_ahorcado extends JFrame {
 		tcl = new Teclado();
 		contentPane.add(tcl);
 		
-		sincro = new Sincronizador(tcl, palabraSecreta, imagenPanel, null, this);
-
+		Menu mnu = new Menu();
+		contentPane.add(mnu);
+		
+		sincro = new Sincronizador(tcl, palabraSecreta, imagenPanel, mnu, this);
+		
 		setVisible(true);
 
 	}
