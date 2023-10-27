@@ -95,9 +95,11 @@ public class PalabraSecreta extends JPanel {
 		int comprobacion = palabra.indexOf(letra);
 
 		if (comprobacion == -1) {
-			
+
+			sincro.getImagen().QuitarVida();
+			restarVida();
 			this.intentos -= 1;
-			
+
 		} else {
 			buscarPosicion(letra, palabra);
 		}
@@ -157,4 +159,12 @@ public class PalabraSecreta extends JPanel {
 		
 		comprobarLetra(letra);
 	}
+
+	private void restarVida() {
+		vidas--;
+		if (vidas <=1) {
+			sincro.getVistaAhorcado().finJuego(false);
+		}
+	}
+
 }

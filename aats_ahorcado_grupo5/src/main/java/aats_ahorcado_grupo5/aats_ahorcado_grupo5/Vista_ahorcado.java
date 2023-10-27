@@ -71,7 +71,7 @@ public class Vista_ahorcado extends JFrame {
 		
 		setVisible(true);
 
-
+		iniciarPartida();
 	}
 
 	private void palabraRandom(int num, JList<String> list) {
@@ -81,11 +81,9 @@ public class Vista_ahorcado extends JFrame {
 	
 	public void iniciarPartida() {
 		sincro.getTeclado().activar();
-		sincro.getImagen().Revivir();
 		setPalabraAleatoria();
 		sincro.getPalabraSecreta().setPalabraAleatoria(this.palabraAleatoria);
-		//sincro.getPalabraSecreta().Revivir();
-		sincro.getImagen().DefinirVida((vida-10)+1);
+		sincro.getImagen().DefinirVida((10-vida)+1);
 		sincro.getPalabraSecreta().setVidas(vida);
 
 	}
@@ -101,7 +99,7 @@ public class Vista_ahorcado extends JFrame {
 		vida = n_vidas;
 	}
 	
-	private void finJuego(boolean ganador) {
+	public void finJuego(boolean ganador) {
 		sincro.getTeclado().desactivar();
 		if (ganador) {
 			JOptionPane.showMessageDialog(null, "Has ganado la partida");
