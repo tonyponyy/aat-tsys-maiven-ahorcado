@@ -89,6 +89,7 @@ public class Vista_ahorcado extends JFrame {
 		sincro.getPalabraSecreta().setVidas(vida);
 		sincro.getPalabraSecreta().setIntentos(vida);
 		sincro.getMenu().enablePistaButton();
+		sincro.getMenu().enableResolverButton();
 	}
 
 	public void setPalabraAleatoria() {

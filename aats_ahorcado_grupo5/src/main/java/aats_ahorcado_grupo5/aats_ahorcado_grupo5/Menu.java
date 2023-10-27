@@ -91,7 +91,7 @@ public class Menu extends JPanel{
 		};
 		
 		iniciarPartidaBtn.addActionListener(iniciarPartidaListener);
-		resolverBtn.addActionListener(resolverListener);
+		resolverBtn.addActionListener(resolverListener);	
 		pistaBtn.addActionListener(pistaListener);
 	}
 	
