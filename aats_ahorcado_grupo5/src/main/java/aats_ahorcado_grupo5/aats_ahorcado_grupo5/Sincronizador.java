@@ -16,25 +16,27 @@ public class Sincronizador {
 		this.img = img;
 		this.mnu = mnu;
 		this.va = va;
+		
+		this.img.setSincro(this);
 	}
 
 
-	public Teclado getTcl() {
+	public Teclado getTeclado() {
 		return tcl;
 	}
 
 
-	public PalabraSecreta getPs() {
+	public PalabraSecreta getPalabraSecreta() {
 		return ps;
 	}
 
 
-	public Imagen getImg() {
+	public Imagen getImagen() {
 		return img;
 	}
 
 
-	public Vista_ahorcado getVa() {
+	public Vista_ahorcado getVistaAhorcado() {
 		return va;
 	}
 	
