@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Menu extends JPanel{
@@ -54,6 +55,7 @@ public class Menu extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				seleccionarDificultad();
 				sincro.getVistaAhorcado().iniciarPartida();
 			}
 			
@@ -83,4 +85,21 @@ public class Menu extends JPanel{
 		resolverBtn.addActionListener(resolverListener);
 		pistaBtn.addActionListener(pistaListener);
 	}
+	
+	public static void seleccionarDificultad() {
+
+        String[] opciones = {"Fácil", "Intermedio", "Difícil"};
+        int num_select = JOptionPane.showOptionDialog(null, "Escoja el nivel de dificultad",
+                "Nivel de Dificultad", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null, opciones, opciones[0]);
+
+        if (num_select == 0) {
+        	JOptionPane.showMessageDialog(null, "opcion 1");
+        } else if (num_select == 1) {
+        	JOptionPane.showMessageDialog(null, "opcion 2");
+        } else if (num_select == 2) {
+        	JOptionPane.showMessageDialog(null, "opcion 3");
+        }
+    }
+	
 }
