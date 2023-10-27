@@ -19,6 +19,8 @@ public class Sincronizador {
 		
 		this.img.setSincro(this);
 		this.tcl.setSincro(this);
+		this.mnu.setSincro(this);
+		this.ps.setSincro(this);
 	}
 
 

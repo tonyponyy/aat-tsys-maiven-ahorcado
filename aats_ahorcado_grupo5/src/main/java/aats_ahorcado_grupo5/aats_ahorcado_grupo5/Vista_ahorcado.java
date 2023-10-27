@@ -33,7 +33,7 @@ public class Vista_ahorcado extends JFrame {
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.add(imagenPanel);
+
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -64,7 +64,7 @@ public class Vista_ahorcado extends JFrame {
 		
 		tcl = new Teclado();
 		contentPane.add(tcl);
-		
+
 		Menu mnu = new Menu();
 		contentPane.add(mnu);
 		
@@ -80,7 +80,7 @@ public class Vista_ahorcado extends JFrame {
 		list.setSelectedIndex(numRandom);
 	}
 	
-	private void iniciarPartida() {
+	public void iniciarPartida() {
 		sincro.getTeclado().activar();
 		sincro.getImagen().Revivir();
 		palabraRandom(listModel.size(), list);
