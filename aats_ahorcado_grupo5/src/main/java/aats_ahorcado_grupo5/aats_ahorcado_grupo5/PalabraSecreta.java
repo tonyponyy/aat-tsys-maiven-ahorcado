@@ -47,9 +47,9 @@ public class PalabraSecreta extends JPanel {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblNewLabel.setBounds(0, 0, 350, 40);
 		panel.add(lblNewLabel);
-
+		
 		crearVidas();
-
+		
 	}
 
 	public void setSincro(Sincronizador sincro) {
@@ -103,15 +103,16 @@ public class PalabraSecreta extends JPanel {
 		} else {
 			buscarPosicion(letra, palabra);
 		}
-		
+
 		compararPalabras();
 
 		if (this.intentos == 0) {
 
 			sincro.getVistaAhorcado().finJuego(false);
+			modificarLabel(this.palabraAleatoria);
+
 		}
-		
-		
+
 	}
 
 	private void buscarPosicion(String letra, String palabra) {
@@ -148,26 +149,30 @@ public class PalabraSecreta extends JPanel {
 
 		return palabra;
 	}
-	
+
 	private void compararPalabras() {
-		if(this.palabraAleatoria.equals(this.palabraOculta.replaceAll(" ", ""))) {
+		if (this.palabraAleatoria.equals(this.palabraOculta.replaceAll(" ", ""))) {
 			sincro.getVistaAhorcado().finJuego(true);
 		}
 	}
-	
+
 	private void restarVida() {
 		vidas--;
-		if (vidas <=1) {
+		if (vidas <= 1) {
 			sincro.getVistaAhorcado().finJuego(false);
+			modificarLabel(this.palabraAleatoria);
 		}
 	}
-	
+
 	public void mostrarLetra() {
 		int pos = this.palabraOculta.replaceAll(" ", "").indexOf("_");
-		System.out.println(pos);
 		String letra = String.valueOf(this.palabraAleatoria.charAt(pos));
-		modificarString(pos, letra, letra);
+		modificarString(pos, letra, this.palabraOculta);
 	}
-	
+
+	public void resolver() {
+		modificarLabel(this.palabraAleatoria);
+		sincro.getVistaAhorcado().finJuego(false);
+	}
 
 }
