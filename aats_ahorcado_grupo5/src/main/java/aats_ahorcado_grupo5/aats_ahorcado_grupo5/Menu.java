@@ -98,15 +98,15 @@ public class Menu extends JPanel{
 	}
 	
 	public void disablePistaButton() {
-		this.pistaBtn.setEnabled(true);
+		this.pistaBtn.setEnabled(false);
 	}
 	
 	public void enableResolverButton() {
-		this.pistaBtn.setEnabled(true);
+		this.resolverBtn.setEnabled(true);
 	}
 	
 	public void disableResolverButton() {
-		this.pistaBtn.setEnabled(true);
+		this.resolverBtn.setEnabled(false);
 	}
 
 	public static void seleccionarDificultad() {
