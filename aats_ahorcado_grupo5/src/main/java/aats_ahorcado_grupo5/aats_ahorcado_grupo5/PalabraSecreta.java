@@ -175,4 +175,8 @@ public class PalabraSecreta extends JPanel {
 		sincro.getVistaAhorcado().finJuego(false);
 	}
 
+	public int getVidas() {
+		return vidas;
+	}
+	
 }

@@ -77,12 +77,15 @@ public class Menu extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				if (sincro.getPalabraSecreta().getVidas() > 1) {
+
 				  int input = JOptionPane.showConfirmDialog(null, "Perderas una vida si aceptas la pista. ¿Aceptas?", "Confirmacion pista",
 						  												JOptionPane.YES_NO_OPTION);
 				  if(input == 0) {
 					  sincro.getPalabraSecreta().mostrarLetra();
 					  ((JButton)e.getSource()).setEnabled(false);
 				  }
+				}
 			}
 			
 		};

@@ -82,8 +82,8 @@ public class Vista_ahorcado extends JFrame {
 	public void iniciarPartida() {
 		sincro.getTeclado().activar();
 		setPalabraAleatoria();
+		sincro.getImagen().DefinirVida((10-vida)+1);
 		sincro.getPalabraSecreta().setPalabraAleatoria(this.palabraAleatoria);
-		sincro.getImagen().DefinirVida((10-vida)+1); 
 		sincro.getPalabraSecreta().setVidas(vida);
 		sincro.getMenu().enablePistaButton();
 
@@ -108,8 +108,11 @@ public class Vista_ahorcado extends JFrame {
 			JOptionPane.showMessageDialog(null, "Has perdido, vuelve a intentarlo");
 		}
 	}
-	
-	
+
+	public int getVida() {
+		return vida;
+	}
+
 	
 
 }
