@@ -12,6 +12,7 @@ public class Imagen extends JPanel {
     private Image imagen;
     int estado = 1;
     JLabel lblNewLabel = new JLabel("");
+    Sincronizador sincro;
 
     public  Imagen() {
     	setBounds(400, 0, 400, 600);
@@ -30,6 +31,18 @@ public class Imagen extends JPanel {
     		estado++;
     		Paint();
     	}
+    }
+    
+    protected void DefinirVida(int vida) {
+    	if (vida > 10) {
+    		vida=10;
+    	}
+    		estado= vida;
+    		Paint();
+    }
+    
+    public void setSincro(Sincronizador sincro) {
+    	this.sincro = sincro;
     }
     
     protected void Revivir() {
