@@ -111,6 +111,7 @@ public class PalabraSecreta extends JPanel {
 			sincro.getVistaAhorcado().finJuego(false);
 		}
 		
+		
 	}
 
 	private void buscarPosicion(String letra, String palabra) {
