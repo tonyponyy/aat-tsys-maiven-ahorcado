@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Menu extends JPanel{
@@ -48,6 +49,7 @@ public class Menu extends JPanel{
 		setListeners();
 	}
 	
+	//Crear y asignar los action listeners a los 3 botones
 	private void setListeners() {
 		iniciarPartidaListener = new ActionListener() {
 
@@ -74,7 +76,11 @@ public class Menu extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//sincro.getPalabraSecreta().pista();
+				  int input = JOptionPane.showConfirmDialog(null, "Perderas una vida si aceptas la pista. ¿Aceptas?", "Confirmacion pista",
+						  												JOptionPane.YES_NO_OPTION);
+				  if(input == 0) {
+					  //sincro.getPalabraSecreta().mostrarLetra();
+				  }
 			}
 			
 		};
