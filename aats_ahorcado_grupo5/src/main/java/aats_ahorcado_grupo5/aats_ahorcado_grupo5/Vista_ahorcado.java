@@ -16,10 +16,8 @@ public class Vista_ahorcado extends JFrame {
 	private Imagen imagenPanel = new Imagen();
 	private Sincronizador sincro;
 	private Teclado tcl;
-
-
 	private String palabraAleatoria;
-	private String barras = "";
+	
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 	private JList<String> list = new JList<>(listModel);
 
@@ -54,9 +52,9 @@ public class Vista_ahorcado extends JFrame {
 		list.setBounds(371, 54, 1, 1);
 		getContentPane().add(list);
 
-		palabraRandom(listModel.size(), list);
+		setPalabraAleatoria();
 
-		PalabraSecreta palabraSecreta = new PalabraSecreta(list.getSelectedValue(), 5);
+		PalabraSecreta palabraSecreta = new PalabraSecreta(this.palabraAleatoria, 5);
 		palabraSecreta.setSize(380, 180);
 		palabraSecreta.setLocation(10, 180);
 		contentPane.add(palabraSecreta);
@@ -81,9 +79,17 @@ public class Vista_ahorcado extends JFrame {
 	public void iniciarPartida() {
 		sincro.getTeclado().activar();
 		sincro.getImagen().Revivir();
-		palabraRandom(listModel.size(), list);
+		setPalabraAleatoria();
+		sincro.getPalabraSecreta().setPalabraAleatoria(this.palabraAleatoria);
 		//sincro.getPalabraSecreta().Revivir();
 	}
+
+	public void setPalabraAleatoria() {
+		palabraRandom(listModel.size(), list);
+		this.palabraAleatoria = list.getSelectedValue();
+	}
+	
+	
 	
 
 }
