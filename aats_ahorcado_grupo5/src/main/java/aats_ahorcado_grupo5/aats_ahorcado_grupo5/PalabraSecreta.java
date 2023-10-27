@@ -104,11 +104,13 @@ public class PalabraSecreta extends JPanel {
 			buscarPosicion(letra, palabra);
 		}
 		
-		comprobarPalabras();
+		compararPalabras();
 
 		if (this.intentos == 0) {
+
 			sincro.getVistaAhorcado().finJuego(false);
 		}
+		
 	}
 
 	private void buscarPosicion(String letra, String palabra) {
@@ -146,25 +148,25 @@ public class PalabraSecreta extends JPanel {
 		return palabra;
 	}
 	
-	private void comprobarPalabras() {
+	private void compararPalabras() {
 		if(this.palabraAleatoria.equals(this.palabraOculta.replaceAll(" ", ""))) {
 			sincro.getVistaAhorcado().finJuego(true);
 		}
 	}
 	
-	public void mostrarLetra() {
-
-		int pos = this.palabraOculta.replaceAll(" ", "").indexOf('_');
-		String letra = String.valueOf(this.palabraAleatoria.charAt(pos));
-		
-		comprobarLetra(letra);
-	}
-
 	private void restarVida() {
 		vidas--;
 		if (vidas <=1) {
 			sincro.getVistaAhorcado().finJuego(false);
 		}
 	}
+	
+	public void mostrarLetra() {
+		int pos = this.palabraOculta.replaceAll(" ", "").indexOf("_");
+		System.out.println(pos);
+		String letra = String.valueOf(this.palabraAleatoria.charAt(pos));
+		modificarString(pos, letra, letra);
+	}
+	
 
 }
