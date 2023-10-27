@@ -14,7 +14,8 @@ public class Vista_ahorcado extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Imagen imagenPanel = new Imagen();
-	
+	private Sincronizador sincro;
+	private Teclado tcl;
 
 	private String palabraAleatoria;
 	private String barras = "";
@@ -25,6 +26,7 @@ public class Vista_ahorcado extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -32,7 +34,6 @@ public class Vista_ahorcado extends JFrame {
 		contentPane.setLayout(null);
 
         contentPane.add(imagenPanel);
-		setVisible(true);
 
 		// Creaci�n del ListBox
 		DefaultListModel<String> listModel = new DefaultListModel<>();
@@ -52,13 +53,18 @@ public class Vista_ahorcado extends JFrame {
 		add(list);
 
 		palabraRandom(listModel.size(), list);
-
+		
 		PalabraSecreta palabraSecreta = new PalabraSecreta(barras);
 		palabraSecreta.setSize(450, 180);
 		palabraSecreta.setLocation(10, 180);
 		contentPane.add(palabraSecreta);
+		
+		tcl = new Teclado();
+		contentPane.add(tcl);
+		
+		sincro = new Sincronizador(tcl, palabraSecreta, imagenPanel, null);
 
-
+		setVisible(true);
 	}
 
 	private void palabraRandom(int num, JList<String> list) {
