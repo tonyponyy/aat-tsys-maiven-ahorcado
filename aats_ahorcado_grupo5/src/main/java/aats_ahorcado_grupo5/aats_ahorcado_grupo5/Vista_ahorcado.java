@@ -13,11 +13,18 @@ public class Vista_ahorcado extends JFrame {
 	private final int FRAME_HEIGHT = 600;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+
+	private Imagen imagenPanel = new Imagen();
+	
+
 	private String palabraAleatoria;
 	private String palabraOculta = "";
 
+
 	public Vista_ahorcado() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Ahorcado");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        contentPane.add(imagenPanel);
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -27,9 +34,6 @@ public class Vista_ahorcado extends JFrame {
 		contentPane.setLayout(null);
 
 		setVisible(true);
-		// 180 menu
-		// 180 palabra secreta
-		// 360 teclado
 
 		// Creación del ListBox
 		DefaultListModel<String> listModel = new DefaultListModel<>();
@@ -108,5 +112,6 @@ public class Vista_ahorcado extends JFrame {
 		
 		return palabra;
 	}
+	
 
 }
