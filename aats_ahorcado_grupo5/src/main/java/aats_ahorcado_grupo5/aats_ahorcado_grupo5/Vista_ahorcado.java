@@ -14,35 +14,36 @@ public class Vista_ahorcado extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Imagen imagenPanel = new Imagen();
-	private String palabraAleatoria;
-	private String palabraOculta = "";
-
+	private Sincronizador sincro;
+	private Teclado tcl;
 
 	public Vista_ahorcado() {
 		setTitle("Ahorcado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.add(imagenPanel);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		setVisible(true);
+        contentPane.add(imagenPanel);
 
 		// Creacion del ListBox
+
 		DefaultListModel<String> listModel = new DefaultListModel<>();
-		listModel.addElement("Murcielago");
-		listModel.addElement("Elefante");
-		listModel.addElement("Computadora");
-		listModel.addElement("Jirafa");
-		listModel.addElement("Guitarra");
-		listModel.addElement("Mariposa");
-		listModel.addElement("Tractor");
-		listModel.addElement("Helicoptero");
-		listModel.addElement("Cocodrilo");
-		listModel.addElement("Esqui");
+		listModel.addElement("MURCIELAGO");
+		listModel.addElement("ELEFANTE");
+		listModel.addElement("COMPUTADORA");
+		listModel.addElement("JIRAFA");
+		listModel.addElement("GUITARRA");
+		listModel.addElement("MARIPOSA");
+		listModel.addElement("TRACTOR");
+		listModel.addElement("HELICOPTERO");
+		listModel.addElement("COCODRILO");
+		listModel.addElement("ESQUI");
 
 		JList<String> list = new JList<>(listModel);
 		list.setBounds(371, 54, 1, 1);
@@ -50,63 +51,23 @@ public class Vista_ahorcado extends JFrame {
 
 		palabraRandom(listModel.size(), list);
 
-		PalabraSecreta palabraSecreta = new PalabraSecreta(palabraOculta);
+		PalabraSecreta palabraSecreta = new PalabraSecreta(list.getSelectedValue());
 		palabraSecreta.setSize(380, 180);
 		palabraSecreta.setLocation(10, 180);
 		contentPane.add(palabraSecreta);
 		
-		comprobarLetra("a", palabraSecreta);
-		comprobarLetra("e", palabraSecreta);
-		comprobarLetra("i", palabraSecreta);
-		comprobarLetra("o", palabraSecreta);
-		comprobarLetra("u", palabraSecreta);
+		tcl = new Teclado();
+		contentPane.add(tcl);
+		
+		sincro = new Sincronizador(tcl, palabraSecreta, imagenPanel, null, this);
+
+		setVisible(true);
 
 	}
 
 	private void palabraRandom(int num, JList<String> list) {
 		int numRandom = new Random().nextInt(num);
 		list.setSelectedIndex(numRandom);
-		palabraAleatoria = list.getSelectedValue();
-
-		for (int i = 0; i < palabraAleatoria.length(); i++) {
-			palabraOculta += " _ ";
-		}
-	}
-
-	private void comprobarLetra(String letra, PalabraSecreta palabraSecreta) {
-		String palabra = palabraAleatoria;
-		int pos = palabra.indexOf(letra);
-		boolean condition = true;
-		
-		do {
-			pos = palabra.indexOf(letra);
-			if (pos == -1) {
-				condition = !condition;
-			} else {
-				palabra = modificarString(pos, letra, palabra, palabraSecreta);
-			}
-		} while (condition);
-		
-
-	}
-
-	private String modificarString(int pos, String letra, String palabra, PalabraSecreta palabraSecreta) {
-		char letraEncontrada = '_';
-		char[] caracteres = palabra.toCharArray();
-		
-		caracteres[pos] = letraEncontrada;
-		
-		// Reemplaza el caracter en la posicion 'pos' de 'palabraOculta' con 'letra'. 
-		// eliminando los espacios en blanco en la cadena.
-		String palabraOcultaModificadas = palabraOculta.replaceAll(" ", "").substring(0, pos) + letra + palabraOculta.replaceAll(" ", "").substring(pos + 1);
-
-		palabra = new String(caracteres);
-		
-		palabraOculta = palabraOcultaModificadas.replaceAll("", " ");
-		
-		palabraSecreta.modificarLabel(palabraOculta);
-		
-		return palabra;
 	}
 	
 
