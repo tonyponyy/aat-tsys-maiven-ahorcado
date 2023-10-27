@@ -98,7 +98,6 @@ public class Vista_ahorcado extends JFrame {
 	}
 	
 	
-	
 	public void definirDificultad(int n_vidas) {
 		vida = n_vidas;
 	}

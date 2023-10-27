@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 public class PalabraSecreta extends JPanel {
 
 	private JLabel lblNewLabel;
+	private JPanel panel_1;
 	private Sincronizador sincro;
 	private String palabraOculta = "";
 	private String palabraAleatoria;
@@ -40,7 +41,6 @@ public class PalabraSecreta extends JPanel {
 		panel.setLayout(null);
 
 		ocultarPalabra();
-		System.out.println(this.palabraAleatoria);
 
 		lblNewLabel = new JLabel(this.palabraOculta);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -48,6 +48,11 @@ public class PalabraSecreta extends JPanel {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblNewLabel.setBounds(0, 0, 350, 40);
 		panel.add(lblNewLabel);
+		
+		panel_1 = new JPanel();
+		panel_1.setBounds(15, 11, 350, 40);
+		add(panel_1);
+		panel_1.setLayout(null);
 		
 		crearVidas();
 		
@@ -59,7 +64,6 @@ public class PalabraSecreta extends JPanel {
 
 	public void setVidas(int vidas) {
 		this.vidas = vidas;
-		this.crearVidas();
 	}
 
 	public void setIntentos(int intentos) {
@@ -67,6 +71,7 @@ public class PalabraSecreta extends JPanel {
 	}
 
 	private void crearVidas() {
+
 		String ruta_imagen = "img/bombilla.png";
 		for (int i = 0; i < this.vidas; i++) {
 			JButton btnNewButton = new JButton("");
@@ -104,7 +109,7 @@ public class PalabraSecreta extends JPanel {
 		if (comprobacion == -1) {
 
 			sincro.getImagen().QuitarVida();
-			restarVida();
+			//restarVida();
 			this.intentos -= 1;
 
 		} else {
@@ -165,7 +170,7 @@ public class PalabraSecreta extends JPanel {
 
 	private void restarVida() {
 		vidas--;
-		if (vidas <= 1) {
+		if (vidas < 1) {
 			sincro.getVistaAhorcado().finJuego(false);
 			modificarLabel(this.palabraAleatoria);
 		}
@@ -175,11 +180,16 @@ public class PalabraSecreta extends JPanel {
 		int pos = this.palabraOculta.replaceAll(" ", "").indexOf("_");
 		String letra = String.valueOf(this.palabraAleatoria.charAt(pos));
 		modificarString(pos, letra, this.palabraOculta);
+		compararPalabras();
 	}
 
 	public void resolver() {
 		modificarLabel(this.palabraAleatoria);
 		sincro.getVistaAhorcado().finJuego(false);
+	}
+
+	private void eliminarVida() {
+		panel_1.remove(panel_1.getComponentCount());
 	}
 
 	public int getVidas() {
