@@ -94,12 +94,10 @@ public class PalabraSecreta extends JPanel {
 		int comprobacion = palabra.indexOf(letra);
 
 		if (comprobacion == -1) {
-<<<<<<< HEAD
 			sincro.getImagen().QuitarVida();
 			restarVida();
-=======
 			this.intentos -= 1;
->>>>>>> 9601d6067d1bd0732c1e97d5f6f7b378372e68a6
+			
 		} else {
 			buscarPosicion(letra, palabra);
 		}
