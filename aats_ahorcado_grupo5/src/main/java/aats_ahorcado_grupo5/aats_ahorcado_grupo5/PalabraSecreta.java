@@ -102,7 +102,7 @@ public class PalabraSecreta extends JPanel {
 		}
 		
 		if(this.intentos == 0) {
-			sincro.getVistaAhorcado().
+			sincro.getVistaAhorcado();
 		}
 	}
 
