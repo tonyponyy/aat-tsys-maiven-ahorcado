@@ -23,6 +23,7 @@ public class Vista_ahorcado extends JFrame {
 	private String barras = "";
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 	private JList<String> list = new JList<>(listModel);
+	private int vida = 10;
 
 
 	public Vista_ahorcado() {
@@ -82,9 +83,13 @@ public class Vista_ahorcado extends JFrame {
 	
 	public void iniciarPartida() {
 		sincro.getTeclado().activar();
-		sincro.getImagen().Revivir();
+		sincro.getImagen().DefinirVida((vida-10)+1);
 		palabraRandom(listModel.size(), list);
-		//sincro.getPalabraSecreta().Revivir();
+		sincro.getPalabraSecreta().setVidas(vida);
+	}
+	
+	public void definirDificultad(int n_vidas) {
+		vida = n_vidas;
 	}
 	
 	private void finJuego(boolean ganador) {
