@@ -12,17 +12,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class PalabraSecreta extends JPanel {
-	
+
 	private JLabel lblNewLabel;
 	private Sincronizador sincro;
 	private String palabraOculta = "";
 	private String palabraAleatoria;
-	private int vida = 5;
-	
+	private int posicionXVidas = 15;
+
 	public PalabraSecreta(String palabraSecreta, int vidas) {
-		
+
 		this.palabraAleatoria = palabraSecreta;
-		
+
 		setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		setLayout(null);
 
@@ -31,31 +31,29 @@ public class PalabraSecreta extends JPanel {
 		panel.setBounds(15, 130, 350, 40);
 		add(panel);
 		panel.setLayout(null);
-		
+
 		ocultarPalabra();
 		System.out.println(this.palabraAleatoria);
-		
+
 		lblNewLabel = new JLabel(this.palabraOculta);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblNewLabel.setBounds(0, 0, 350, 40);
 		panel.add(lblNewLabel);
-		
-		int x = 15;
-		
-		for(int i = 0; i<vidas;i++) {
+
+		for (int i = 0; i < vidas; i++) {
 			JButton btnNewButton = new JButton("");
 			btnNewButton.setEnabled(false);
 			btnNewButton.setBackground(new Color(255, 0, 0));
-			btnNewButton.setBounds(x, 69, 50, 50);
+			btnNewButton.setBounds(this.posicionXVidas, 69, 50, 50);
 			add(btnNewButton);
-			
-			x+=60;
+
+			this.posicionXVidas += 60;
 		}
-		
+
 	}
-	
+
 	public void setSincro(Sincronizador sincro) {
 		this.sincro = sincro;
 	}
@@ -71,33 +69,33 @@ public class PalabraSecreta extends JPanel {
 			this.palabraOculta += " _";
 		}
 	}
-	
+
 	private void modificarLabel(String palabra) {
 		lblNewLabel.setText(palabra);
 	}
-	
+
 	public void comprobarLetra(String letra) {
 		String palabra = this.palabraAleatoria;
 		int comprobacion = palabra.indexOf(letra);
-		
-		if(comprobacion == -1) {
-			
-		}else {
+
+		if (comprobacion == -1) {
+
+		} else {
 			buscarPosicion(letra, palabra);
 		}
 	}
-	
+
 	private void buscarPosicion(String letra, String palabra) {
 		int pos = palabra.indexOf(letra);
 		boolean comprobacion = true;
-		
+
 		do {
 			pos = palabra.indexOf(letra);
-			
+
 			if (pos == -1) {
 				comprobacion = !comprobacion;
 			} else {
-				
+
 				palabra = modificarString(pos, letra, palabra);
 			}
 		} while (comprobacion);
@@ -106,18 +104,19 @@ public class PalabraSecreta extends JPanel {
 	private String modificarString(int pos, String letra, String palabra) {
 		char letraEncontrada = '_';
 		char[] caracteres = palabra.toCharArray();
-		
+
 		caracteres[pos] = letraEncontrada;
 		palabra = new String(caracteres);
-		
-		// Reemplaza el caracter en la posicion 'pos' de 'palabraOculta' con 'letra'. 
+
+		// Reemplaza el caracter en la posicion 'pos' de 'palabraOculta' con 'letra'.
 		// eliminando los espacios en blanco en la cadena.
-		String palabraOcultaModificadas = palabraOculta.replaceAll(" ", "").substring(0, pos) + letra + palabraOculta.replaceAll(" ", "").substring(pos + 1);
+		String palabraOcultaModificadas = palabraOculta.replaceAll(" ", "").substring(0, pos) + letra
+				+ palabraOculta.replaceAll(" ", "").substring(pos + 1);
 
 		palabraOculta = palabraOcultaModificadas.replaceAll("", " ");
-		
+
 		modificarLabel(palabraOculta);
-		
+
 		return palabra;
 	}
 }
