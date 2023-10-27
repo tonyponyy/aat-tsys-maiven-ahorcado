@@ -17,11 +17,13 @@ public class PalabraSecreta extends JPanel {
 	private Sincronizador sincro;
 	private String palabraOculta = "";
 	private String palabraAleatoria;
+	private int vidas;
 	private int posicionXVidas = 15;
 
 	public PalabraSecreta(String palabraSecreta, int vidas) {
 
 		this.palabraAleatoria = palabraSecreta;
+		this.vidas = vidas;
 
 		setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		setLayout(null);
@@ -42,7 +44,21 @@ public class PalabraSecreta extends JPanel {
 		lblNewLabel.setBounds(0, 0, 350, 40);
 		panel.add(lblNewLabel);
 
-		for (int i = 0; i < vidas; i++) {
+		crearVidas();
+
+	}
+
+	public void setSincro(Sincronizador sincro) {
+		this.sincro = sincro;
+	}
+	
+	public void setVidas(int vidas) {
+		this.vidas = vidas;
+		this.crearVidas();
+	}
+
+	private void crearVidas() {
+		for (int i = 0; i < this.vidas; i++) {
 			JButton btnNewButton = new JButton("");
 			btnNewButton.setEnabled(false);
 			btnNewButton.setBackground(new Color(255, 0, 0));
@@ -51,11 +67,6 @@ public class PalabraSecreta extends JPanel {
 
 			this.posicionXVidas += 60;
 		}
-
-	}
-
-	public void setSincro(Sincronizador sincro) {
-		this.sincro = sincro;
 	}
 
 	public void setPalabraAleatoria(String palabraAleatoria) {
