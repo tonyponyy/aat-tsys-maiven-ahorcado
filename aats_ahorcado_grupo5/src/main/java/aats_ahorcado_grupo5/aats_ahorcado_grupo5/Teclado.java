@@ -81,7 +81,7 @@ public class Teclado extends JPanel{
 	//Función que desactiva todas las letras del teclado
 	public void desactivar() {
 		for(int i = 0; i < alfabeto.length; i++) {
-			alfabeto[i].setEnabled(true);
+			alfabeto[i].setEnabled(false);
 		}
 	}
 }
