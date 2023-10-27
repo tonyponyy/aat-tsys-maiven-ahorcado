@@ -25,6 +25,8 @@ public class Vista_ahorcado extends JFrame {
 
 
 	public Vista_ahorcado() {
+		
+		
 		setTitle("Ahorcado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -85,8 +87,8 @@ public class Vista_ahorcado extends JFrame {
 		sincro.getImagen().DefinirVida((10-vida)+1);
 		sincro.getPalabraSecreta().setPalabraAleatoria(this.palabraAleatoria);
 		sincro.getPalabraSecreta().setVidas(vida);
+		sincro.getPalabraSecreta().setIntentos(vida);
 		sincro.getMenu().enablePistaButton();
-
 	}
 
 	public void setPalabraAleatoria() {
@@ -102,6 +104,8 @@ public class Vista_ahorcado extends JFrame {
 	
 	public void finJuego(boolean ganador) {
 		sincro.getTeclado().desactivar();
+		sincro.getMenu().disablePistaButton();
+		sincro.getMenu().disableResolverButton();
 		if (ganador) {
 			JOptionPane.showMessageDialog(null, "Has ganado la partida");
 		}else {
