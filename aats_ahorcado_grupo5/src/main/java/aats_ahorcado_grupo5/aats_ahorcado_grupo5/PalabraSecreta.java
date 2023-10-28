@@ -2,7 +2,10 @@ package aats_ahorcado_grupo5.aats_ahorcado_grupo5;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 
 import javax.swing.border.MatteBorder;
@@ -19,16 +22,14 @@ public class PalabraSecreta extends JPanel {
 	private Sincronizador sincro;
 	private String palabraOculta = "";
 	private String palabraAleatoria;
-	private int vidas;
+	private int pistas =5;
 	private int intentos;
-	private int posicionXVidas = 15;
 
 	private final int INTENTOSDEFECTO = 10;
 
 	public PalabraSecreta(String palabraSecreta, int vidas) {
 
 		this.palabraAleatoria = palabraSecreta;
-		this.vidas = vidas;
 		this.intentos = this.INTENTOSDEFECTO;
 
 		setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
@@ -62,27 +63,34 @@ public class PalabraSecreta extends JPanel {
 		this.sincro = sincro;
 	}
 
-	public void setVidas(int vidas) {
-		this.vidas = vidas;
-	}
-
 	public void setIntentos(int intentos) {
 		this.intentos = intentos;
 	}
+	
+	
+
+	public int getIntentos() {
+		return intentos;
+	}
 
 	private void crearVidas() {
-
+		
+		for (Component component : getComponents()) {
+	        if (component instanceof JButton) {
+	            remove(component);
+	        }
+	    }
 		String ruta_imagen = "img/bombilla.png";
-		for (int i = 0; i < this.vidas; i++) {
+		for (int i = 0; i < this.pistas; i++) {
 			JButton btnNewButton = new JButton("");
 			btnNewButton.setEnabled(false);
 			btnNewButton.setBackground(new Color(255, 0, 0));
 			btnNewButton.setIcon(new ImageIcon(ruta_imagen));
-			btnNewButton.setBounds(this.posicionXVidas, 69, 50, 50);
+			btnNewButton.setBounds(15 +i*(60), 69, 50, 50);
 			add(btnNewButton);
-
-			this.posicionXVidas += 60;
 		}
+		 repaint();
+
 	}
 
 	public void setPalabraAleatoria(String palabraAleatoria) {
@@ -109,16 +117,18 @@ public class PalabraSecreta extends JPanel {
 		if (comprobacion == -1) {
 
 			sincro.getImagen().QuitarVida();
-			//restarVida();
 			this.intentos -= 1;
 
+
 		} else {
+			sincro.getVistaAhorcado().puntos +=25;
+			sincro.getVistaAhorcado().actualizarPuntos();
 			buscarPosicion(letra, palabra);
 		}
 
 		compararPalabras();
 
-		if (this.intentos == 0) {
+		if (this.intentos == 1) {
 
 			sincro.getVistaAhorcado().finJuego(false);
 			modificarLabel(this.palabraAleatoria);
@@ -168,12 +178,16 @@ public class PalabraSecreta extends JPanel {
 		}
 	}
 
-	private void restarVida() {
-		vidas--;
-		if (vidas < 1) {
+	public void restarPista() {
+		intentos--;
+		pistas--;
+		sincro.getImagen().QuitarVida();
+		crearVidas();
+		if (intentos < 1) {
 			sincro.getVistaAhorcado().finJuego(false);
 			modificarLabel(this.palabraAleatoria);
 		}
+
 	}
 
 	public void mostrarLetra() {
@@ -188,12 +202,9 @@ public class PalabraSecreta extends JPanel {
 		sincro.getVistaAhorcado().finJuego(false);
 	}
 
-	private void eliminarVida() {
-		panel_1.remove(panel_1.getComponentCount());
-	}
-
-	public int getVidas() {
-		return vidas;
+	public void restablecerPistas() {
+		pistas = 5;
+		crearVidas();
 	}
 	
 }

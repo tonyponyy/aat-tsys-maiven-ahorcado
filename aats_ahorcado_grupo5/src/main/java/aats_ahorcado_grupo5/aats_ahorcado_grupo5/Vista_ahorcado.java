@@ -22,6 +22,9 @@ public class Vista_ahorcado extends JFrame {
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 	private JList<String> list = new JList<>(listModel);
 	private int vida = 10;
+	public int puntos = 0;
+	private boolean reset =true;
+	private int ronda=0;
 
 
 	public Vista_ahorcado() {
@@ -82,14 +85,28 @@ public class Vista_ahorcado extends JFrame {
 	}
 	
 	public void iniciarPartida() {
+		//resetea los puntos y las pistas cuando es una partida nueva, pero los mantiene si 
+		//encadenamos una partida.
+		if (reset) {
+			ronda = 0;
+			puntos = 0;
+			sincro.getPalabraSecreta().restablecerPistas();
+		}else {
+			ronda++;
+		}
+		reset = true;
 		sincro.getTeclado().activar();
 		setPalabraAleatoria();
 		sincro.getImagen().DefinirVida((10-vida)+1);
 		sincro.getPalabraSecreta().setPalabraAleatoria(this.palabraAleatoria);
-		sincro.getPalabraSecreta().setVidas(vida);
 		sincro.getPalabraSecreta().setIntentos(vida);
 		sincro.getMenu().enablePistaButton();
 		sincro.getMenu().enableResolverButton();
+		actualizarPuntos();
+	}
+	
+	public void actualizarPuntos() {
+		sincro.getMenu().imprimirMarcador("Puntos:"+puntos+" Ronda:"+(ronda+1));
 	}
 
 	public void setPalabraAleatoria() {
@@ -107,9 +124,13 @@ public class Vista_ahorcado extends JFrame {
 		sincro.getMenu().disablePistaButton();
 		sincro.getMenu().disableResolverButton();
 		if (ganador) {
-			JOptionPane.showMessageDialog(null, "Has ganado la partida");
+			// si gana le damos un bonus de 50
+			puntos +=50;
+			actualizarPuntos();
+			JOptionPane.showMessageDialog(null, "Has ganado la partida, puntos : "+puntos);
+			reset = false;
 		}else {
-			JOptionPane.showMessageDialog(null, "Has perdido, vuelve a intentarlo");
+			JOptionPane.showMessageDialog(null, "Has perdido, vuelve a intentarlo, puntos : "+puntos);
 		}
 	}
 
