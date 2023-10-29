@@ -41,8 +41,6 @@ public class PalabraSecreta extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 
-		ocultarPalabra();
-
 		lblNewLabel = new JLabel(this.palabraOculta);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -66,7 +64,6 @@ public class PalabraSecreta extends JPanel {
 	public void setIntentos(int intentos) {
 		this.intentos = intentos;
 	}
-	
 	
 
 	public int getIntentos() {
@@ -96,7 +93,6 @@ public class PalabraSecreta extends JPanel {
 	public void setPalabraAleatoria(String palabraAleatoria) {
 		this.palabraAleatoria = palabraAleatoria;
 		this.ocultarPalabra();
-		this.modificarLabel(this.palabraOculta);
 	}
 
 	private void ocultarPalabra() {
@@ -104,6 +100,7 @@ public class PalabraSecreta extends JPanel {
 		for (int i = 0; i < palabraAleatoria.length(); i++) {
 			this.palabraOculta += " _";
 		}
+		this.modificarLabel(this.palabraOculta);
 	}
 
 	private void modificarLabel(String palabra) {
@@ -111,8 +108,8 @@ public class PalabraSecreta extends JPanel {
 	}
 
 	public void comprobarLetra(String letra) {
-		String palabra = this.palabraAleatoria;
-		int comprobacion = palabra.indexOf(letra);
+
+		int comprobacion = this.palabraAleatoria.indexOf(letra);
 
 		if (comprobacion == -1) {
 
@@ -123,12 +120,12 @@ public class PalabraSecreta extends JPanel {
 		} else {
 			sincro.getVistaAhorcado().puntos +=25;
 			sincro.getVistaAhorcado().actualizarPuntos();
-			buscarPosicion(letra, palabra);
+			buscarPosicion(letra, this.palabraAleatoria);
 		}
 
 		compararPalabras();
 
-		if (this.intentos == 1) {
+		if (this.intentos == 0) {
 
 			sincro.getVistaAhorcado().finJuego(false);
 			modificarLabel(this.palabraAleatoria);
@@ -137,8 +134,9 @@ public class PalabraSecreta extends JPanel {
 
 	}
 
-	private void buscarPosicion(String letra, String palabra) {
-		int pos = palabra.indexOf(letra);
+	private void buscarPosicion(String letra, String palabraAleatoria) {
+		String palabra = palabraAleatoria;
+		int pos = 0;
 		boolean comprobacion = true;
 
 		do {
@@ -147,7 +145,6 @@ public class PalabraSecreta extends JPanel {
 			if (pos == -1) {
 				comprobacion = !comprobacion;
 			} else {
-
 				palabra = modificarString(pos, letra, palabra);
 			}
 		} while (comprobacion);
@@ -193,7 +190,7 @@ public class PalabraSecreta extends JPanel {
 	public void mostrarLetra() {
 		int pos = this.palabraOculta.replaceAll(" ", "").indexOf("_");
 		String letra = String.valueOf(this.palabraAleatoria.charAt(pos));
-		modificarString(pos, letra, this.palabraOculta);
+		comprobarLetra(letra);
 		compararPalabras();
 	}
 
