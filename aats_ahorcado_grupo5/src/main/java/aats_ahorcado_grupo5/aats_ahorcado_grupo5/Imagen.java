@@ -1,8 +1,6 @@
 package aats_ahorcado_grupo5.aats_ahorcado_grupo5;
 
-import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -18,7 +16,7 @@ public class Imagen extends JPanel {
     	setBounds(400, 0, 400, 600);
     	Paint();
         lblNewLabel.setBounds(0, 0, 400, 600);
-        add(lblNewLabel);
+        add(lblNewLabel);	
     }
     
     public void Paint() {

@@ -191,6 +191,7 @@ public class PalabraSecreta extends JPanel {
 		int pos = this.palabraOculta.replaceAll(" ", "").indexOf("_");
 		String letra = String.valueOf(this.palabraAleatoria.charAt(pos));
 		comprobarLetra(letra);
+		sincro.getTeclado().desactivarLetra(letra);
 		compararPalabras();
 	}
 
