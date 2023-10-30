@@ -205,4 +205,14 @@ public class PalabraSecreta extends JPanel {
 		crearVidas();
 	}
 	
+	public boolean quedanPistas() {
+		if (pistas <=0) {
+			return false;
+		}else {
+			return true;
+		}
+		
+		
+	}
+	
 }
